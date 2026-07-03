@@ -32,13 +32,8 @@ const authMiddleware = (req, res, next) => {
  const { username, password } = req.headers;
  const user = usersDB.find(u => u.username === username &&
 u.password === password);
- // Middleware para proteger rutas
-const authMiddleware = (req, res, next) => {
- const { username, password } = req.headers;
- const user = usersDB.find(u => u.username === username && u.password === password);
- if (!user) return res.status(403).json({ message: 'Acceso denegado' });
- next();
-};
+ if (!user) return res.status(403).json({ message: 'Acceso
+denegado' });
  next();
 };
 app.get('/secure-data', authMiddleware, (req, res) => {
